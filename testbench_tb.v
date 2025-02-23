@@ -17,26 +17,26 @@ module testbench_tb;
 
     // mplex2_1 test
     reg sel_0;
-    wire i_0, i_1, out;
+    wire mplex_i_0, mplex_i_1, mplex_out;
 
     initial begin
         #(DELAY_4)
         sel_0 = 1'b0;
-        #1; $display("out = %b", out);
+        #1; $display("out = %b", mplex_out);
         sel_0 = 1'b1;
-        #1; $display("out = %b", out);
+        #1; $display("out = %b", mplex_out);
     end
 
     mplex2_1 mplex2_1_module(
         .sel(sel_0),
-        .i_0(i_0),
-        .i_1(i_1),
-        .out(out)
+        .i_0(mplex_i_0),
+        .i_1(mplex_i_1),
+        .out(mplex_out)
     );
 
     // counter test
     reg clk_0;
-    wire [4:0] leds;
+    wire [4:0] counter_leds;
 
     initial begin
         clk_0 = 0;
@@ -45,12 +45,12 @@ module testbench_tb;
     always begin
         #(DELAY_1)
         clk_0 = ~clk_0;
-        $display("led config = %b", leds);
+        $display("led config = %b", counter_leds);
     end
 
     counter counter_module(
         .clk(clk_0),
-        .leds(leds)
+        .leds(counter_leds)
     );
 
     // 4-bit LUT test
@@ -64,7 +64,7 @@ module testbench_tb;
         // logic execution 
         #(DELAY_4)
         lut_inputs <= 0;
-        $display("lut output = %b", out); // in SV: assert out == 0
+        $display("lut output = %b", lut_out); // in SV: assert out == 0
         
         // programming LUT for '^^^' function
         #(DELAY_4)
@@ -72,13 +72,28 @@ module testbench_tb;
         // logic execution
         #(DELAY_4)
         lut_inputs <= 4'b1111;
-        $display("lut output = %b", out); // in SV: assert out == 1
+        $display("lut output = %b", lut_out); // in SV: assert out == 1
     end
 
     lut4_1 lut4_1_module (
         .lut_config(lut_config),
         .inputs(lut_inputs),
         .out(lut_out)
+    );
+
+    // full-adder test
+    reg carry_in, carry_data_0, carry_data_1; 
+    wire carry_out, adder_out;
+
+    initial begin
+    end
+
+    f_adder f_adder_module(
+        .carry_in(carry_in),
+        .data_0(carry_data_0),
+        .data_1(carry_data_1),
+        .carry_out(carry_out),
+        .out(adder_out)
     );
 
 endmodule

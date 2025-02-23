@@ -22,7 +22,7 @@ load: control.fs
 
 sim:
 	apio sim
-	rm *.sconsign.dblite *.out *.vcd
+	rm .sconsign.dblite *.out *.vcd
 
 .PHONY: load
 .INTERMEDIATE: control_pnr.json control.json

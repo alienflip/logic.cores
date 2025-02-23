@@ -2,10 +2,11 @@
 `define ADDER_MODULE
 
 module adder (
+    input carry_in,
     input data_0,
     input data_1,
-    output out,
-    output carry
+    output carry_out,
+    output out
 );
 
     
