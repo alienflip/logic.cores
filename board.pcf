@@ -1,0 +1,7 @@
+set_io  "clk"    52;
+
+set_io  "leds[0]"    10;
+set_io  "leds[1]"    11;
+set_io  "leds[2]"    13;
+set_io  "leds[3]"    14;
+set_io  "leds[4]"    15;
