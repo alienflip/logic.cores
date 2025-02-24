@@ -1,7 +1,7 @@
-`ifndef ADDER_MODULE
-`define ADDER_MODULE
+`ifndef F_ADDER_MODULE
+`define F_ADDER_MODULE
 
-module adder (
+module f_adder (
     input carry_in,
     input data_0,
     input data_1,
